@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Neumorphic Clock</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  <body>
+      <div class= "digital-clock">
+          <div class="hour">
+              <span id="hour-1"></span>
+              <span id="hour-2"></span>
+          </div>
+          <div class="minute">
+            <span id="minute-1"></span>
+            <span id="minute-2"></span>
+          </div>
+          <div class="second">
+            <span id="second-1"></span>
+            <span id="second-2">3</span>
+          </div>
+      </div>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js" integrity="sha512-rmZcZsyhe0/MAjquhTgiUcb4d9knaFc7b5xAfju483gbEXTkeJRUMIPk6s3ySZMYUHEcjKbjLjyddGWMrNEvZg==" crossorigin="anonymous"></script>
+  <script>
+      function changeTime() { 
+          var hour = moment().format("HH");
+          var minute = moment().format("mm");
+          var second = moment().format("ss");
+
+          var H1 = document.getElementById("hour-1");
+          var H2 = document.getElementById("hour-2");
+          var M1 = document.getElementById("minute-1");
+          var M2 = document.getElementById("minute-2");
+          var S1 = document.getElementById("second-1");
+          var S2 = document.getElementById("second-2");
+
+          changeTxt(H1, hour.substr(0,1));
+          changeTxt(H2, hour.substr(1,1));
+          changeTxt(M1, minute.substr(0,1));
+          changeTxt(M2, minute.substr(1,1));
+          changeTxt(S1, second.substr(0,1));
+          changeTxt(S2, second.substr(1,1));
+
+          setTimeout(changeTime, 1000);
+      }
+      function changeTxt(obj, txt) {
+          if (obj.innerText != txt) {
+              obj.className = "hide";
+              setTimeout(function() {
+                obj.innerText = txt;
+                obj.className = "show"
+              },500)
+              
+          }
+      }
+      changeTime();
+          
+          
+          
+          </script>
+</html>
